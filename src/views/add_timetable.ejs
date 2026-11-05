@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Lịch Học Mới</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5" style="max-width: 600px;">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="text-center mb-4 text-success">Thêm Lịch Học Mới</h2>
+                
+                <form action="/timetable/add" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Thứ trong tuần:</label>
+                        <select name="day_of_week" class="form-select" required>
+                            <option value="Thứ Hai">Thứ Hai</option>
+                            <option value="Thứ Ba">Thứ Ba</option>
+                            <option value="Thứ Tư">Thứ Tư</option>
+                            <option value="Thứ Năm">Thứ Năm</option>
+                            <option value="Thứ Sáu">Thứ Sáu</option>
+                            <option value="Thứ Bảy">Thứ Bảy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Buổi học:</label>
+                        <select name="session" class="form-select" required>
+                            <option value="Sáng">Sáng</option>
+                            <option value="Chiều">Chiều</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Tên Lớp Học:</label>
+                        <input type="text" name="class_name" class="form-control" placeholder="Ví dụ: CNTT01, QLXD01..." required>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="/timetable" class="btn btn-secondary">Quay lại</a>
+                        <button type="submit" class="btn btn-success">Lưu lịch học</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
