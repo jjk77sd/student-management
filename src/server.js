@@ -180,3 +180,40 @@ app.post('/classes/delete/:id', async (req, res) => {
         res.status(500).send(`<h1>Lỗi khi xóa lớp: ${error.message}</h1>`);
     }
 });
+// --- QUẢN LÝ NGÀNH HỌC ---
+
+app.get('/majors', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM majors');
+        res.render('majors', { majors: rows });
+    } catch (error) {
+        res.status(500).send(`<h1>Lỗi tải danh sách ngành: ${error.message}</h1>`);
+    }
+});
+
+app.get('/majors/add', (req, res) => {
+    res.render('add_major');
+});
+
+app.post('/majors/add', async (req, res) => {
+    try {
+        const { major_code, major_name, description } = req.body;
+        await db.query(
+            'INSERT INTO majors (major_code, major_name, description) VALUES (?, ?, ?)',
+            [major_code, major_name, description]
+        );
+        res.redirect('/majors');
+    } catch (error) {
+        res.status(500).send(`<h1>Lỗi khi thêm ngành: ${error.message}</h1>`);
+    }
+});
+
+app.post('/majors/delete/:id', async (req, res) => {
+    try {
+        const majorId = req.params.id;
+        await db.query('DELETE FROM majors WHERE id = ?', [majorId]);
+        res.redirect('/majors');
+    } catch (error) {
+        res.status(500).send(`<h1>Lỗi khi xóa ngành: ${error.message}</h1>`);
+    }
+});
